@@ -10,6 +10,7 @@ class RegisterPage(BaseCase):
     accept_privacy_checkbox = 'div[class="privacy-checkbox"] div'
     signup_button = 'input[type="submit"]'
     thank_you_popup = 'div[class="sweet-alert showSweetAlert visible"]'
+    confirm_button = 'button[class="confirm"]'
 
     def go_to_register_page(self):
         self.open('https://internet:oureurekatime16@staging.zageno.com/signup/?next=%2F')
@@ -26,3 +27,4 @@ class RegisterPage(BaseCase):
         self.click(self.accept_privacy_checkbox)
         self.click(self.signup_button)
         self.assert_element(self.thank_you_popup)
+        self.click(self.confirm_button)

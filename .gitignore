@@ -16,3 +16,6 @@ ENV/
 .vscode/*
 archived_logs/*
 latest_logs/*
+
+assets/*
+report.html

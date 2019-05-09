@@ -5,6 +5,3 @@ class HomePage(BaseCase):
 
     def go_to_home_page(self):
         self.open("https://internet:oureurekatime16@staging.zageno.com/")
-
-    def add_to_cart(self):
-        self.click(self.add_to_cart_button)
