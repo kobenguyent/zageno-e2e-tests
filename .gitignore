@@ -19,3 +19,4 @@ latest_logs/*
 
 assets/*
 report.html
+.cache

@@ -1,7 +1,7 @@
 from seleniumbase import BaseCase
 
 class CatalogPage(BaseCase):
-    view_and_buy = 'a div[class="btn btn--slim product-item__cta-buy"]'
+    view_and_buy_button = 'div[class="product-item__info-cta"] a div[class="btn btn--slim product-item__cta-buy"]'
 
     def select_a_product(self):
-        self.click(self.view_and_buy)
+        self.find_element(self.view_and_buy_button, timeout=6).click()
