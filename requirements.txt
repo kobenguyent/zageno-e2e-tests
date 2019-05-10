@@ -1,2 +1,3 @@
 seleniumbase
 Faker
+pytest-testrail

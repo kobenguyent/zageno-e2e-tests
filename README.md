@@ -106,3 +106,67 @@ pytest test/shopping_test.py --browser=chrome --html=report.html
 ```
 
 ![enter image description here](https://i.ibb.co/N6Rsqx4/Screenshot-2019-05-09-at-10-24-53.png)
+
+### TestRail Integration
+
+The test results could be published to TestRail after the execution.
+
+#### Config for Pytest tests
+
+Add a marker to the tests that will be picked up to be added to the run.
+
+```python
+from pytest_testrail.plugin import testrail
+
+@testrail('C1234', 'C5678')
+def test_foo():
+    # test code goes here
+
+# OR	
+
+from pytest_testrail.plugin import pytestrail
+
+@pytestrail.case('C1234', 'C5678')
+def test_bar():
+    # test code goes here
+```
+
+#### Config for TestRail
+
+* Settings file template config:
+
+```ini
+[API]
+url = https://yoururl.testrail.net/
+email = user@email.com
+password = <api_key>
+
+[TESTRUN]
+assignedto_id = 1
+project_id = 2
+suite_id = 3
+```
+
+An example to execute the test
+```sh
+pytest test/login_test.py --browser=chrome --testrail --tr-config=testrail.cfg
+```
+
+The output
+```sh
+MacBook-Pro:zageno-e2e-tests thanhnguyen$ pytest  test/login_test.py --browser=chrome --testrail --tr-config=testrail.cfg --headless
+======================================================================================== test session starts =========================================================================================
+platform darwin -- Python 2.7.10, pytest-4.4.2, py-1.8.0, pluggy-0.11.0
+pytest-testrail: a new testrun will be created
+rootdir: /Users/thanhnguyen/Desktop/zageno-e2e-tests
+plugins: seleniumbase-1.23.9, metadata-1.8.0, html-1.20.0, forked-1.0.2, xdist-1.28.0, cov-2.7.1, ordering-0.6, rerunfailures-7.0, testrail-2.3.3
+collecting ... [testrail] New testrun created with name "Automated Run 10-05-2019 15:25:00" and ID=12
+collected 1 item                                                                                                                                                                                     
+
+test/login_test.py .                                                                                                                                                                           [100%][testrail] Start publishing
+[testrail] Testcases to publish: 1
+[testrail] End publishing
+
+
+===================================================================================== 1 passed in 10.53 seconds ======================================================================================
+```
